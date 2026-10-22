@@ -1,5 +1,7 @@
 # Kairuha
 
+[![Verify](https://github.com/Kairuha/Kairuha/actions/workflows/verify.yml/badge.svg)](https://github.com/Kairuha/Kairuha/actions/workflows/verify.yml)
+
 Kairuha 是一个按 [HOP](https://github.com/kernel4632/HOP) 思想设计的 .NET 后端框架。
 
 它建立在 ASP.NET Core Minimal APIs 上，只负责统一错误、边界响应和 OpenAPI。业务继续使用原生路由、依赖注入、配置、日志与数据库，不需要经过 Controller → Service → Repository 的转手链。
