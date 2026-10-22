@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Kairuha contributors",
+  "classifications": [
+    "Web",
+    "API",
+    "Kairuha",
+    "HOP"
+  ],
+  "identity": "Kairuha.Web",
+  "name": "Kairuha Web API",
+  "shortName": "kairuha",
+  "sourceName": "Kairuha.Web",
+  "preferNameDirectory": true,
+  "description": "按业务主体组织、基于 ASP.NET Core Minimal APIs 的 HOP 后端项目。",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "skipRestore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "创建项目时跳过自动还原。",
+      "defaultValue": "false"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "Kairuha.Web.csproj"
+    }
+  ],
+  "defaultName": "KairuhaApp",
+  "postActions": [
+    {
+      "id": "restore",
+      "condition": "(!skipRestore)",
+      "description": "还原项目依赖",
+      "manualInstructions": [
+        {
+          "text": "运行 dotnet restore"
+        }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    }
+  ]
+}

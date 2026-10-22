@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>Kairuha.Templates</PackageId>
+    <Version>$(KairuhaVersion)</Version>
+    <Authors>Kairuha contributors</Authors>
+    <Description>用于创建 HOP 风格 .NET 后端项目的 Kairuha 模板。</Description>
+    <PackageTags>dotnet-new;templates;kairuha;aspnetcore;hop</PackageTags>
+    <PackageType>Template</PackageType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="content/**/*" Exclude="content/**/bin/**/*;content/**/obj/**/*" />
+    <Compile Remove="content/**/*.cs" />
+    <None Include="README.md" Pack="true" PackagePath="/" />
+    <None Include="../../LICENSE" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <Target Name="ValidateTemplateRuntimeVersion" BeforeTargets="Pack">
+    <XmlPeek
+      XmlInputPath="$(MSBuildProjectDirectory)/content/Kairuha.Web.csproj"
+      Query="/Project/ItemGroup/PackageReference[@Include='Kairuha']/@Version">
+      <Output TaskParameter="Result" ItemName="TemplateRuntimeVersion" />
+    </XmlPeek>
+    <Error
+      Condition="'@(TemplateRuntimeVersion)' != '$(KairuhaVersion)'"
+      Text="模板引用的 Kairuha 版本 @(TemplateRuntimeVersion) 与待发布版本 $(KairuhaVersion) 不一致。" />
+  </Target>
+</Project>

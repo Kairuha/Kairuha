@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Kairuha/Kairuha.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/Ledger/Ledger.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Kairuha.Tests/Kairuha.Tests.csproj" />
+    <Project Path="tests/Kairuha.TemplateSmoke/Kairuha.TemplateSmoke.csproj" />
+  </Folder>
+  <Folder Name="/templates/">
+    <Project Path="templates/Kairuha.Templates/Kairuha.Templates.csproj" />
+  </Folder>
+</Solution>
