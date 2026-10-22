@@ -2,7 +2,7 @@
 
 Kairuha 在 `1.0` 前仍可能调整公共 API；破坏性变化会在这里给出迁移说明。
 
-## 0.1.0-alpha.1（待发布）
+## 0.1.0-alpha.1（2026-10-22）
 
 第一版可运行的 HOP 契约原型：
 
@@ -15,5 +15,5 @@ Kairuha 在 `1.0` 前仍可能调整公共 API；破坏性变化会在这里给�
 - 提供 EF Core SQLite Ledger 完整示例。
 - HTTP 集成测试覆盖账单生命周期、验证、错误安全和 OpenAPI。
 - 模板验收覆盖安装、生成、还原、构建、发布与真实 HTTP 请求。
-
-当前版本尚未上传 NuGet。
+- 在 Windows、Linux、macOS 托管环境完成完整验收。
+- 发布 `Kairuha` 与 `Kairuha.Templates` NuGet 包。

@@ -1,14 +1,29 @@
 # Kairuha
 
 [![Verify](https://github.com/Kairuha/Kairuha/actions/workflows/verify.yml/badge.svg)](https://github.com/Kairuha/Kairuha/actions/workflows/verify.yml)
+[![Kairuha on NuGet](https://img.shields.io/nuget/vpre/Kairuha.svg?label=Kairuha)](https://www.nuget.org/packages/Kairuha)
+[![Kairuha.Templates on NuGet](https://img.shields.io/nuget/vpre/Kairuha.Templates.svg?label=Kairuha.Templates)](https://www.nuget.org/packages/Kairuha.Templates)
 
 Kairuha 是一个按 [HOP](https://github.com/kernel4632/HOP) 思想设计的 .NET 后端框架。
 
 它建立在 ASP.NET Core Minimal APIs 上，只负责统一错误、边界响应和 OpenAPI。业务继续使用原生路由、依赖注入、配置、日志与数据库，不需要经过 Controller → Service → Repository 的转手链。
 
-> 当前状态：`0.1.0-alpha.1` 发布候选。核心契约、完整示例和模板验收已经跑通，但还没有发布到 NuGet，也不承诺 API 已稳定。
+> 当前状态：`0.1.0-alpha.1` 已发布。核心契约、完整示例和模板验收已经在 Windows、Linux、macOS 跑通；Alpha 阶段不承诺 API 已稳定。
 
 Kairuha 使用 [MIT License](LICENSE)。
+
+## 快速开始
+
+需要 .NET 10 SDK：
+
+```bash
+dotnet new install Kairuha.Templates::0.1.0-alpha.1
+dotnet new kairuha -n MyApi
+cd MyApi
+dotnet run
+```
+
+生成的项目包含 `/greetings` 示例与开发环境 OpenAPI，可以直接替换成自己的业务主体。
 
 ## 从源码运行
 

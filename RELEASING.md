@@ -8,7 +8,7 @@
 - [x] 包元数据使用正式地址 `https://github.com/Kairuha/Kairuha`。
 - [x] 创建 `Kairuha` 组织和公开的 `Kairuha/Kairuha` 仓库，并将 `main` 作为默认分支。
 - [x] 在 Windows、Linux、macOS 托管环境跑通构建、测试、打包和模板端到端验收。
-- 在 NuGet 账户中确认 `Kairuha` 与 `Kairuha.Templates` 的所有权；公开查询截至 2026-10-22 没有发现这两个包，但首次推送结果才是最终判断。
+- [x] 在 NuGet 发布并取得 `Kairuha` 与 `Kairuha.Templates` 的包所有权。
 - 创建只允许推送这两个包 ID 的短期 NuGet API Key，不把密钥写进文件、命令历史或 CI 日志。
 
 ## 更新版本
@@ -37,6 +37,8 @@ dotnet run --project tests/Kairuha.TemplateSmoke -c Release --no-build --no-rest
 ```
 
 确认两个包都没有警告，并检查包内容里没有本地数据库、密钥、构建缓存或源码绝对路径。
+
+发布前还必须确认工作区干净，并检查两个包 `.nuspec` 中的 `repository commit` 与待打标签的 `HEAD` 完全一致。优先发布对应提交的 CI 产物，不发布由带未提交修改的工作区生成的包。
 
 仓库统一把候选包放在 `artifacts/packages/`；根目录不会生成 `bin/Release/`。
 

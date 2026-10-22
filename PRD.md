@@ -421,7 +421,7 @@ Kairuha 不得要求用户把现有生态适配成自己的接口。
 
 ### R1：0.1 Alpha
 
-- [ ] 发布 `Kairuha` 和 `Kairuha.Templates`；许可证与公开仓库已就绪，等待 NuGet 所有权、密钥与首次推送确认。
+- [x] 发布 `Kairuha` 和 `Kairuha.Templates` `0.1.0-alpha.1`，并从 NuGet 签名包完成端到端复验。
 - [x] 完成 Ledger 示例与入门文档。
 - [x] 配置并跑通 Windows、Linux、macOS 三平台 CI，从空目录安装模板并完成还原、构建、发布与 HTTP 验证。
 
