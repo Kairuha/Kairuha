@@ -35,7 +35,7 @@ var hive = Path.Combine(root, "hive");                      // 不污染用户�
 var app = Path.Combine(root, "TemplateSmoke");             // 模拟用户从空目录创建的新项目
 var publish = Path.Combine(root, "publish");               // 只运行发布产物，不借用 build 输出
 var nugetConfig = Path.Combine(root, "NuGet.config");       // 不继承构建机可能存在的私有包源
-var restoredPackages = Path.Combine(root, "packages");     // 不让全局缓存掩盖待验收的本地运行包
+var restoredPackages = Path.Combine(root, "packages");      // 不让全局缓存掩盖待验收的本地运行包
 Directory.CreateDirectory(hive);
 WriteNuGetConfig(nugetConfig, packages, restoredPackages);
 

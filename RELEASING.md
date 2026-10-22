@@ -7,6 +7,7 @@
 - [x] 使用 MIT License，并在两个包中写入 `PackageLicenseExpression` 与许可证正文。
 - [x] 包元数据使用正式地址 `https://github.com/Kairuha/Kairuha`。
 - [x] 创建 `Kairuha` 组织和公开的 `Kairuha/Kairuha` 仓库，并将 `main` 作为默认分支。
+- [x] 在 Windows、Linux、macOS 托管环境跑通构建、测试、打包和模板端到端验收。
 - 在 NuGet 账户中确认 `Kairuha` 与 `Kairuha.Templates` 的所有权；公开查询截至 2026-10-22 没有发现这两个包，但首次推送结果才是最终判断。
 - 创建只允许推送这两个包 ID 的短期 NuGet API Key，不把密钥写进文件、命令历史或 CI 日志。
 

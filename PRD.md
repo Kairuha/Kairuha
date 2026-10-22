@@ -423,7 +423,7 @@ Kairuha 不得要求用户把现有生态适配成自己的接口。
 
 - [ ] 发布 `Kairuha` 和 `Kairuha.Templates`；许可证与公开仓库已就绪，等待 NuGet 所有权、密钥与首次推送确认。
 - [x] 完成 Ledger 示例与入门文档。
-- [x] 配置三平台 CI，从空目录安装模板并完成还原、构建、发布与 HTTP 验证；工作流需在正式 GitHub 仓库首次运行后确认各托管环境结果。
+- [x] 配置并跑通 Windows、Linux、macOS 三平台 CI，从空目录安装模板并完成还原、构建、发布与 HTTP 验证。
 
 ### R2：0.5 Beta
 
