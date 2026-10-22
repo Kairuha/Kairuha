@@ -11,6 +11,7 @@ using System.Net.Http.Json;                                 // 按生成项目�
 using System.Net.Sockets;                                   // 为临时服务选择一个当前空闲端口
 using System.Text;                                          // 构造故意损坏的 JSON
 using System.Text.Json;                                     // 检查 Problem Details 与 OpenAPI
+using System.Xml.Linq;                                      // 生成跨平台且隔离的 NuGet 源配置
 
 if (args.Length != 1)
 {
@@ -33,7 +34,10 @@ var root = Path.Combine(Path.GetTempPath(), $"kairuha-template-smoke-{Guid.NewGu
 var hive = Path.Combine(root, "hive");                      // 不污染用户已经安装的 dotnet new 模板
 var app = Path.Combine(root, "TemplateSmoke");             // 模拟用户从空目录创建的新项目
 var publish = Path.Combine(root, "publish");               // 只运行发布产物，不借用 build 输出
+var nugetConfig = Path.Combine(root, "NuGet.config");       // 不继承构建机可能存在的私有包源
+var restoredPackages = Path.Combine(root, "packages");     // 不让全局缓存掩盖待验收的本地运行包
 Directory.CreateDirectory(hive);
+WriteNuGetConfig(nugetConfig, packages, restoredPackages);
 
 var succeeded = false;
 try
@@ -47,7 +51,7 @@ try
 
     var compatibility = CompatibilityArgument();             // 仅供缺少 Targeting Pack 的本地发行版临时使用
     await Dotnet(app, Arguments(
-        ["restore", project, "--source", packages, "--source", "https://api.nuget.org/v3/index.json"],
+        ["restore", project, "--configfile", nugetConfig],
         compatibility));
     await Dotnet(app, Arguments(["build", project, "-c", "Release", "--no-restore"], compatibility));
     await Dotnet(app, Arguments(["publish", project, "-c", "Release", "--no-build", "--no-restore", "-o", publish], compatibility));
@@ -67,6 +71,35 @@ finally
     {
         Console.Error.WriteLine($"模板验收目录已保留，便于定位：{root}"); // 失败现场比自动清理更有用
     }
+}
+
+// --- 为生成项目创建不依赖宿主机器的 NuGet 配置 ---
+static void WriteNuGetConfig(string path, string localSource, string globalPackagesFolder)
+{
+    var document = new XDocument(
+        new XElement("configuration",
+            new XElement("config",
+                new XElement("add",
+                    new XAttribute("key", "globalPackagesFolder"),
+                    new XAttribute("value", globalPackagesFolder))),
+            new XElement("packageSources",
+                new XElement("clear"),
+                new XElement("add",
+                    new XAttribute("key", "kairuha-local"),
+                    new XAttribute("value", localSource)),
+                new XElement("add",
+                    new XAttribute("key", "nuget.org"),
+                    new XAttribute("value", "https://api.nuget.org/v3/index.json"),
+                    new XAttribute("protocolVersion", "3"))),
+            new XElement("packageSourceMapping",
+                new XElement("packageSource",
+                    new XAttribute("key", "kairuha-local"),
+                    new XElement("package", new XAttribute("pattern", "Kairuha"))),
+                new XElement("packageSource",
+                    new XAttribute("key", "nuget.org"),
+                    new XElement("package", new XAttribute("pattern", "*"))))));
+
+    document.Save(path);
 }
 
 // --- 启动发布产物并检查公开契约 ---
