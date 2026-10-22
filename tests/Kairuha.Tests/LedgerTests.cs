@@ -89,7 +89,8 @@ internal sealed class LedgerApp : WebApplicationFactory<Program>
         {
             configuration.AddInMemoryCollection(new Dictionary<string, string?> // 在 Program 注册 Data 前换掉连接地址
             {
-                ["ConnectionStrings:Ledger"] = $"Data Source={file}",
+                // 测试数据库生命周期很短；禁用连接池，确保 Windows 停止应用后可以立即删除文件。
+                ["ConnectionStrings:Ledger"] = $"Data Source={file};Pooling=False",
             });
         });
     }
