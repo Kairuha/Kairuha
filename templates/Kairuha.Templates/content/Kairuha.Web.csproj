@@ -7,6 +7,5 @@
 
   <ItemGroup>
     <PackageReference Include="Kairuha" Version="0.1.0-alpha.1" />
-    <PackageReference Include="Microsoft.Extensions.Validation" Version="10.0.13" />
   </ItemGroup>
 </Project>
